@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import MovieBanner from './components/MovieBanner'
+import Navbar from './components/Navbar'
+import HideButton from './components/HideButton'
 
 function App() {
+  const [showMovies, setShowMovies] = useState(true)
+
+  const clickShowButton = () => {
+    setShowMovies(bool => !bool)
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <HideButton clickShowButton={() => clickShowButton()} show={showMovies} />
+      {showMovies && <MovieBanner />}
+
+    </>
   );
 }
 
